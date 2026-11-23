@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUREKA FORENSICS — Edition 01 | Global Interdisciplinary Investigative Summit</title>
+  <meta name="description" content="Where Medicine, Law, Forensics, AI, and Cyber Converge. Featuring a Live Cold-Case Digital Evidence Simulation." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script> 
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#060913',
+            surface: '#0D1323',
+            surfaceLight: '#151E34',
+            cyanForensic: '#06B6D4',
+            crimsonAlert: '#EF4444',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060913;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+    .bg-forensic-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+    }
+    .glass-card {
+      background: rgba(13, 19, 35, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover {
+      border-color: rgba(6, 182, 212, 0.35);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-forensic-grid antialiased selection:bg-cyanForensic selection:text-obsidian">
+
+  <!-- =====================================================================
+       EASY EDIT ZONE: PASTE YOUR GOOGLE FORM LINKS & REAL SPEAKERS HERE
+       ===================================================================== -->
+  <script>
+    const CONFERENCE_CONFIG = {
+      eventName: "EUREKA FORENSICS",
+      editionTag: "EDITION 01",
+      dateDisplay: "EDITION 01 • JANUARY 30, 2027 • LIVE VIRTUAL SUMMIT",
+      countdownTarget: "2026-12-19T10:00:00+05:30",
+      
+      // PASTE YOUR TWO GOOGLE FORM LINKS INSIDE THE QUOTES BELOW:
+      registerLink: "https://docs.google.com/forms/d/e/1FAIpQLSc-UgPvc9Y-HM-pwfdvj60smI7mPHCOrLZyPwN1-rInRtOuMw/viewform?usp=header",
+      submitPaperLink: "https://docs.google.com/forms/d/e/1FAIpQLSfBD0CYDfelsFJ90-SGWFvbCyvGYladenosTIT6cMNmXlsAZA/viewform?usp=header",
+      
+      contactEmail: "khyati.khanna.eurekaforensics@gmail.com",
+      instagramUrl: "https://www.instagram.com/eurekaforensics/",
+      linkedinUrl: "www.linkedin.com/in/eureka-forensics",
+
+      speakers: [
+        {
+          id: "SPK-01",
+          name: "Dr. Rakhi Khanna",
+          role: "Additional Director, Forensic Science Laboratory, Rajasthan",
+          organization: "National Institute of Medico-Legal Sciences",
+          domain: "Forensic Toxicology",
+          image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80",
+          bio: "Specialist in post-mortem toxicology, novel psychoactive substance profiling, and medico-legal autopsy reconstruction across 1,200+ complex criminal investigations.",
+          sessionTitle: "Molecular Autopsy & Trace Toxicology in Unexplained Deaths",
+          status: "CONFIRMED"
+        },
+        {
+          id: "SPK-02",
+          name: "Adv. Meera Krishnan",
+          role: "Senior Digital Evidence & Criminal Counsel",
+          organization: "High Court Cyber & Constitutional Bar",
+          domain: "Criminal Law",
+          image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+          bio: "Advises law enforcement and appellate courts on admissibility of electronic records, chain-of-custody standards, and AI-generated evidence jurisprudence.",
+          sessionTitle: "Admissibility of Deepfakes & Chain of Custody in Modern Courts",
+          status: "CONFIRMED"
+        },
+        {
+          id: "SPK-03",
+          name: "Rohan Kulkarni",
+          role: "Lead Incident Responder & Threat Hunter",
+          organization: "Apex Cyber Forensics Lab",
+          domain: "AI & Cyber",
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+          bio: "Former DFIR architect specializing in dark-web attribution, volatile memory extraction, and machine-learning anomaly detection in ransomware breaches.",
+          sessionTitle: "AI-Driven Attribution: Tracing Encrypted Network Trails",
+          status: "CONFIRMED"
+        },
+        {
+          id: "SPK-04",
+          name: "Speaker Slot 04 — Revealing Soon",
+          role: "Senior Crime Scene & Ballistics Expert",
+          organization: "State Forensic Science Directorate",
+          domain: "Crime Scene Forensics",
+          image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+          bio: "Official profile and keynote topic unlocking soon. Register early to receive speaker announcements and Case File #001 dossier access.",
+          sessionTitle: "3D LiDAR Crime Scene Reconstruction & Bloodstain Dynamics",
+          status: "ANNOUNCING SOON"
+        }
+      ],
+
+      schedule: [
+        {
+          day: "DAY 01 • JAN 30",
+          time: "10:00 AM IST",
+          code: "BRIEFING-00",
+          title: "Opening Ceremony & Release of Classified Case File #001",
+          speaker: "Organizing Committee",
+          track: "ALL DOMAINS",
+          clueDrop: "DOSSIER UNLOCKED: Initial Autopsy & Network Logs Distributed"
+        },
+        {
+          day: "DAY 01 • JAN 30",
+          time: "11:15 AM IST",
+          code: "MED-FOR-01",
+          title: "Molecular Autopsy & Trace Toxicology in Unexplained Deaths",
+          speaker: "Dr. Aarav Deshmukh",
+          track: "MEDICINE & FORENSICS",
+          clueDrop: "CLUE #01 DROPPED: Toxicology Half-Life Window"
+        },
+        {
+          day: "DAY 01 • JAN 30",
+          time: "02:00 PM IST",
+          code: "AI-CYB-02",
+          title: "AI-Driven Attribution: Tracing Encrypted Network Trails",
+          speaker: "Rohan Kulkarni",
+          track: "AI & CYBER",
+          clueDrop: "CLUE #02 DROPPED: Spoofed Metadata Packet Header"
+        },
+        {
+          day: "DAY 02 • JAN 30",
+          time: "10:30 AM IST",
+          code: "LAW-JUR-03",
+          title: "Admissibility of Deepfakes & Chain of Custody in Modern Courts",
+          speaker: "Adv. Meera Krishnan",
+          track: "LAW & JURISPRUDENCE",
+          clueDrop: "CLUE #03 DROPPED: Tampered CCTV Hash Mismatch"
+        },
+        {
+          day: "DAY 02 • JAN 30",
+          time: "01:30 PM IST",
+          code: "RES-CFP-04",
+          title: "Interdisciplinary Paper & Poster Defense Showcase",
+          speaker: "Shortlisted Student & Researcher Authors",
+          track: "RESEARCH TRACKS",
+          clueDrop: "PEER REVIEW & JURY SCORING"
+        },
+        {
+          day: "DAY 02 • JAN 30",
+          time: "04:30 PM IST",
+          code: "VERDICT-99",
+          title: "Live Case Reconstruction Reveal & Lead Investigator Awards",
+          speaker: "Jury Panel & Top 3 Finalists",
+          track: "CLOSING CEREMONY",
+          clueDrop: "CERTIFICATES & HONORS ISSUED"
+        }
+      ]
+    };
+  </script>
+
+  <!-- TOP NAVIGATION -->
+  <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-obsidian/85 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-lg bg-cyanForensic/10 border border-cyanForensic/40 flex items-center justify-center group-hover:bg-cyanForensic/20 transition">
+          <i data-lucide="fingerprint" class="w-6 h-6 text-cyanForensic"></i>
+        </div>
+        <div>
+          <span class="font-display font-bold text-lg tracking-wider text-white block leading-none">EUREKA FORENSICS</span>
+          <span class="font-mono text-[10px] tracking-[0.22em] text-cyanForensic uppercase">EDITION 01 • MED • LAW • FORENSICS • AI • CYBER</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#usp-simulation" class="hover:text-cyanForensic transition flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-crimsonAlert animate-ping"></span>
+          Case #001 Lab
+        </a>
+        <a href="#domains" class="hover:text-cyanForensic transition">5 Pillars</a>
+        <a href="#speakers" class="hover:text-cyanForensic transition">Speakers</a>
+        <a href="#schedule" class="hover:text-cyanForensic transition">Schedule</a>
+        <a href="#cfp" class="hover:text-cyanForensic transition">Call for Papers</a>
+      </nav>
+
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="#cfp" class="px-4 py-2 rounded-lg border border-white/15 text-xs font-mono uppercase tracking-wider text-slate-200 hover:border-cyanForensic hover:text-cyanForensic transition">
+          Submit Paper
+        </a>
+        <a id="nav-reg-btn" href="#" target="_blank" class="px-5 py-2.5 rounded-lg bg-cyanForensic text-obsidian font-semibold text-sm hover:bg-cyan-300 transition shadow-lg shadow-cyanForensic/20">
+          Register Free
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-white/10 px-6 py-5 space-y-4">
+      <a href="#usp-simulation" class="block text-sm font-medium text-crimsonAlert">● Live Case #001 Simulation</a>
+      <a href="#domains" class="block text-sm text-slate-300">5 Core Pillars</a>
+      <a href="#speakers" class="block text-sm text-slate-300">Keynote Speakers</a>
+      <a href="#schedule" class="block text-sm text-slate-300">Summit Schedule</a>
+      <a href="#cfp" class="block text-sm text-slate-300">Call for Papers</a>
+      <div class="pt-2">
+        <a id="mob-reg-btn" href="#" target="_blank" class="block w-full text-center py-2.5 rounded-lg bg-cyanForensic text-obsidian font-semibold text-sm">Register Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
+    <div class="absolute top-20 left-1/4 w-96 h-96 bg-cyanForensic/15 rounded-full blur-[128px] pointer-events-none"></div>
+    <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-[128px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card border border-cyanForensic/30 mb-8">
+        <span class="w-2 h-2 rounded-full bg-cyanForensic animate-pulse"></span>
+        <span id="hero-date-badge" class="font-mono text-xs tracking-widest text-cyanForensic uppercase">EDITION 01 • DECEMBER 19–20, 2026 • LIVE VIRTUAL SUMMIT</span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.08]">
+        Decoding Evidence.<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyanForensic via-sky-300 to-indigo-400">
+          Reconstructing Truth.
+        </span>
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+        The premier interdisciplinary virtual conference uniting <strong class="text-white font-medium">Medicine, Law, Forensics, AI, and Cybersecurity</strong>. No passive lectures—every delegate enters a live, multi-track <span class="text-cyanForensic font-medium">Cold-Case Evidence Simulation</span>.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a id="hero-reg-btn" href="#" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-cyanForensic text-obsidian font-bold text-base hover:bg-cyan-300 transition flex items-center justify-center gap-2 glow-cyan">
+          <span>Claim Delegate Pass</span>
+          <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+        </a>
+        <a href="#usp-simulation" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-white font-semibold text-base hover:bg-white/10 transition flex items-center justify-center gap-2 border border-white/15">
+          <i data-lucide="shield-alert" class="w-5 h-5 text-crimsonAlert"></i>
+          <span>Inspect Case File #001</span>
+        </a>
+      </div>
+
+      <!-- Countdown -->
+      <div class="mt-14 max-w-2xl mx-auto glass-card rounded-2xl p-5 border border-white/10">
+        <div class="text-[11px] font-mono uppercase tracking-[0.25em] text-slate-400 mb-3">
+          T-Minus Until First Evidence Dossier Unlock
+        </div>
+        <div class="grid grid-cols-4 gap-3 text-center">
+          <div class="bg-obsidian/80 rounded-xl py-3 border border-white/5">
+            <span id="cd-days" class="font-display text-2xl sm:text-4xl font-bold text-white">00</span>
+            <span class="block font-mono text-[10px] text-cyanForensic mt-1">DAYS</span>
+          </div>
+          <div class="bg-obsidian/80 rounded-xl py-3 border border-white/5">
+            <span id="cd-hours" class="font-display text-2xl sm:text-4xl font-bold text-white">00</span>
+            <span class="block font-mono text-[10px] text-cyanForensic mt-1">HOURS</span>
+          </div>
+          <div class="bg-obsidian/80 rounded-xl py-3 border border-white/5">
+            <span id="cd-mins" class="font-display text-2xl sm:text-4xl font-bold text-white">00</span>
+            <span class="block font-mono text-[10px] text-cyanForensic mt-1">MINUTES</span>
+          </div>
+          <div class="bg-obsidian/80 rounded-xl py-3 border border-white/5">
+            <span id="cd-secs" class="font-display text-2xl sm:text-4xl font-bold text-cyanForensic">00</span>
+            <span class="block font-mono text-[10px] text-slate-400 mt-1">SECONDS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USP SECTION -->
+  <section id="usp-simulation" class="py-20 relative border-t border-white/10 bg-surface/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-crimsonAlert/15 border border-crimsonAlert/40 text-crimsonAlert font-mono text-xs uppercase tracking-wider">
+            <i data-lucide="radio" class="w-3.5 h-3.5"></i>
+            <span>Signature Conference USP</span>
+          </div>
+          
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white leading-tight">
+            Don't Just Watch Talks.<br />
+            <span class="text-cyanForensic">Crack the Case Live.</span>
+          </h2>
+          
+          <p class="text-slate-300 leading-relaxed">
+            Traditional webinars put you to sleep. At <strong class="text-white">Eureka Forensics — Edition 01</strong>, every keynote session is wired into a synchronized, real-time investigative simulation.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-4">
+              <div class="w-9 h-9 rounded-lg bg-cyanForensic/15 border border-cyanForensic/30 flex items-center justify-center shrink-0 mt-0.5 font-mono text-sm font-bold text-cyanForensic">01</div>
+              <div>
+                <h4 class="font-semibold text-white">Receive the Classified Case Dossier</h4>
+                <p class="text-sm text-slate-400 mt-0.5">Upon registration, unlock a simulated crime packet with autopsy notes, network packet captures, CCTV hashes, and witness statements.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-9 h-9 rounded-lg bg-cyanForensic/15 border border-cyanForensic/30 flex items-center justify-center shrink-0 mt-0.5 font-mono text-sm font-bold text-cyanForensic">02</div>
+              <div>
+                <h4 class="font-semibold text-white">Extract Clues Across Med, Law, AI & Cyber</h4>
+                <p class="text-sm text-slate-400 mt-0.5">Each keynote speaker reveals one hidden forensic clue or analytical technique during their session to eliminate false leads.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-9 h-9 rounded-lg bg-crimsonAlert/15 border border-crimsonAlert/30 flex items-center justify-center shrink-0 mt-0.5 font-mono text-sm font-bold text-crimsonAlert">03</div>
+              <div>
+                <h4 class="font-semibold text-white">Earn "Lead Investigator" Honors</h4>
+                <p class="text-sm text-slate-400 mt-0.5">Submit your final reconstruction before the closing gavel. Top analysts earn a verifiable distinction badge on their official certificate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="glass-card rounded-2xl p-6 sm:p-8 border border-cyanForensic/30 relative overflow-hidden glow-cyan">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-crimsonAlert"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <span class="ml-2 font-mono text-xs text-slate-400">DOSSIER_EF_ED01_001.ENC</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded bg-crimsonAlert/20 text-crimsonAlert font-mono text-[11px] font-bold border border-crimsonAlert/30">
+                TOP SECRET // SIMULATED
+              </span>
+            </div>
+
+            <div class="space-y-4 font-mono text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-obsidian/90 border border-white/10">
+                <div class="text-slate-400 text-[11px]">OPERATION CODENAME</div>
+                <div class="text-white font-bold text-base mt-0.5">"THE PHANTOM ALIBI" — Hybrid Bio-Cyber Homicide</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div class="p-3 rounded-xl bg-obsidian/90 border border-white/10">
+                  <div class="text-slate-400 text-[10px]">EVIDENCE EXHIBIT A</div>
+                  <div class="text-cyanForensic mt-1">Post-Mortem Tox Screen</div>
+                </div>
+                <div class="p-3 rounded-xl bg-obsidian/90 border border-white/10">
+                  <div class="text-slate-400 text-[10px]">EVIDENCE EXHIBIT B</div>
+                  <div class="text-cyanForensic mt-1">Altered CCTV SHA-256</div>
+                </div>
+                <div class="p-3 rounded-xl bg-obsidian/90 border border-white/10">
+                  <div class="text-slate-400 text-[10px]">EVIDENCE EXHIBIT C</div>
+                  <div class="text-cyanForensic mt-1">Deepfake Voice Log</div>
+                </div>
+                <div class="p-3 rounded-xl bg-obsidian/90 border border-white/10">
+                  <div class="text-slate-400 text-[10px]">EVIDENCE EXHIBIT D</div>
+                  <div class="text-cyanForensic mt-1">Sec. 63 BSA Admissibility</div>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <button onclick="toggleSampleClue()" class="w-full py-3 px-4 rounded-xl bg-surfaceLight hover:bg-cyanForensic/20 border border-cyanForensic/40 text-cyanForensic font-mono text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                  <i data-lucide="terminal" class="w-4 h-4"></i>
+                  <span id="clue-btn-text">Decrypt Sample Evidence Snippet</span>
+                </button>
+                <div id="sample-clue-box" class="hidden mt-3 p-4 rounded-xl bg-obsidian border border-crimsonAlert/40 text-xs text-slate-300 leading-relaxed">
+                  <span class="text-crimsonAlert font-bold">[DECRYPTED LOG 02:14:09 UTC]:</span> Smart-watch biometric telemetry indicates cardiac arrest 38 minutes <em>prior</em> to the suspect's outbound voice message—proving synthetic voice cloning was deployed to stage a false timeline.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 PILLARS -->
+  <section id="domains" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-cyanForensic">Interdisciplinary Architecture</span>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">Five Converging Pillars</h2>
+      <p class="text-slate-400 mt-4">Select any domain below to explore conference tracks, research themes, and simulation modules.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2.5 mb-10" id="pillar-tabs">
+      <button onclick="selectPillar('med')" data-pillar="med" class="pillar-btn active px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider border border-cyanForensic bg-cyanForensic/15 text-cyanForensic transition">
+        01. Forensic Medicine
+      </button>
+      <button onclick="selectPillar('law')" data-pillar="law" class="pillar-btn px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider border border-white/10 bg-surface text-slate-300 hover:border-white/30 transition">
+        02. Law & Jurisprudence
+      </button>
+      <button onclick="selectPillar('for')" data-pillar="for" class="pillar-btn px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider border border-white/10 bg-surface text-slate-300 hover:border-white/30 transition">
+        03. Crime Scene Forensics
+      </button>
+      <button onclick="selectPillar('ai')" data-pillar="ai" class="pillar-btn px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider border border-white/10 bg-surface text-slate-300 hover:border-white/30 transition">
+        04. AI in Investigation
+      </button>
+      <button onclick="selectPillar('cyb')" data-pillar="cyb" class="pillar-btn px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider border border-white/10 bg-surface text-slate-300 hover:border-white/30 transition">
+        05. Cyber & DFIR
+      </button>
+    </div>
+
+    <div id="pillar-content" class="glass-card rounded-3xl p-8 sm:p-10 border border-white/10 transition-all"></div>
+  </section>
+
+  <!-- SPEAKERS -->
+  <section id="speakers" class="py-24 border-t border-white/10 bg-surface/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-[0.25em] text-cyanForensic">Investigative Faculty</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">Keynote Speakers & Panelists</h2>
+        </div>
+        <p class="text-slate-400 max-w-md text-sm">
+          Click any speaker card to inspect their full dossier, research background, and live clue module.
+        </p>
+      </div>
+
+      <div id="speakers-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-cyanForensic">Mission Timeline</span>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2">Summit Agenda & Clue Drops</h2>
+      <p class="text-slate-400 mt-3">All times in Indian Standard Time (IST). Recordings remain accessible to registered delegates.</p>
+    </div>
+
+    <div id="schedule-list" class="space-y-4"></div>
+  </section>
+
+  <!-- CALL FOR PAPERS -->
+  <section id="cfp" class="py-24 border-t border-white/10 bg-gradient-to-b from-surface/50 to-obsidian">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-cyanForensic/30 relative overflow-hidden">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <span class="font-mono text-xs uppercase tracking-[0.25em] text-cyanForensic">Call for Abstracts & Case Studies</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Present Your Research on an Interdisciplinary Stage</h2>
+            <p class="text-slate-300 leading-relaxed">
+              We invite undergraduate, postgraduate, doctoral researchers, and practitioners across <strong class="text-white">Medical Sciences, Law, Forensic Labs, AI, and Cybersecurity</strong> to submit original research abstracts (250–300 words) or forensic case analyses.
+            </p>
+            <div class="grid sm:grid-cols-3 gap-4 pt-2">
+              <div class="p-4 rounded-xl bg-obsidian/80 border border-white/10">
+                <div class="font-mono text-xs text-cyanForensic">FORMAT</div>
+                <div class="font-semibold text-white mt-1">Oral Paper or E-Poster</div>
+              </div>
+              <div class="p-4 rounded-xl bg-obsidian/80 border border-white/10">
+                <div class="font-mono text-xs text-cyanForensic">PUBLICATION</div>
+                <div class="font-semibold text-white mt-1">Conference Proceedings</div>
+              </div>
+              <div class="p-4 rounded-xl bg-obsidian/80 border border-white/10">
+                <div class="font-mono text-xs text-cyanForensic">RECOGNITION</div>
+                <div class="font-semibold text-white mt-1">Best Paper Awards</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-obsidian/90 rounded-2xl p-6 sm:p-8 border border-white/10 space-y-5">
+            <h3 class="font-display text-xl font-bold text-white">Submission Checklist</h3>
+            <ul class="space-y-3 text-sm text-slate-300">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-cyanForensic shrink-0"></i>
+                <span>Abstract up to 300 words + 5 keywords</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-cyanForensic shrink-0"></i>
+                <span>Co-authorship allowed (up to 3 authors)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-cyanForensic shrink-0"></i>
+                <span>Strict zero-plagiarism & ethical compliance</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-cyanForensic shrink-0"></i>
+                <span>Verifiable Presenter Certificate included</span>
+              </li>
+            </ul>
+            <a id="cfp-submit-btn" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-white text-obsidian font-bold text-sm hover:bg-cyanForensic transition flex items-center justify-center gap-2">
+              <span>Submit Abstract Now</span>
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 py-12 bg-obsidian text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <i data-lucide="fingerprint" class="w-6 h-6 text-cyanForensic"></i>
+        <span class="font-display font-bold text-white tracking-wider">EUREKA FORENSICS — EDITION 01</span>
+      </div>
+      <div class="font-mono text-xs text-center">
+        BRIDGING MEDICINE • LAW • FORENSICS • AI • CYBERSECURITY
+      </div>
+      <div class="flex items-center gap-5">
+        <a id="footer-email" href="mailto:desk@eurekaforensics.org" class="hover:text-cyanForensic transition">Email Desk</a>
+        <a id="footer-ig" href="#" target="_blank" class="hover:text-cyanForensic transition">Instagram</a>
+        <a id="footer-li" href="#" target="_blank" class="hover:text-cyanForensic transition">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SPEAKER BIO MODAL -->
+  <div id="speaker-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="glass-card max-w-lg w-full rounded-2xl p-6 sm:p-8 border border-cyanForensic/40 relative">
+      <button onclick="closeSpeakerModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="flex items-center gap-4 mb-5">
+        <img id="modal-img" src="" alt="" class="w-20 h-20 rounded-xl object-cover border border-cyanForensic/40" />
+        <div>
+          <span id="modal-domain" class="font-mono text-[11px] uppercase px-2.5 py-0.5 rounded bg-cyanForensic/15 text-cyanForensic"></span>
+          <h3 id="modal-name" class="font-display text-2xl font-bold text-white mt-1"></h3>
+          <p id="modal-role" class="text-xs text-slate-300"></p>
+        </div>
+      </div>
+      <div class="space-y-4 text-sm">
+        <p id="modal-bio" class="text-slate-300 leading-relaxed"></p>
+        <div class="p-4 rounded-xl bg-obsidian/90 border border-white/10">
+          <div class="font-mono text-[10px] text-cyanForensic uppercase">Keynote Session</div>
+          <div id="modal-session" class="font-semibold text-white mt-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PILLARS_DATA = {
+      med: {
+        code: "PILLAR-01 // MEDICO-LEGAL",
+        title: "Forensic Medicine, Pathology & Toxicology",
+        desc: "Exploring clinical forensic diagnostics, post-mortem interval estimation, novel synthetic drug toxicology, and trauma biomechanics in complex medico-legal death investigations.",
+        topics: ["Molecular Autopsy & Sudden Unexplained Death", "Emerging Designer Drugs & LC-MS Toxicology", "Forensic Odontology & Disaster Victim Identification", "Clinical Forensics in Assault & Trauma Cases"],
+        caseRole: "Delegates analyze simulated blood-gas reports and post-mortem metabolite levels to establish true time of death."
+      },
+      law: {
+        code: "PILLAR-02 // JURISPRUDENCE",
+        title: "Criminal Law, Digital Evidence & Constitutional Rights",
+        desc: "Navigating statutory frameworks governing electronic evidence admissibility, chain-of-custody integrity, algorithmic bias in sentencing, and cross-border cybercrime extradition.",
+        topics: ["Admissibility Standards for AI & Electronic Records", "Chain-of-Custody Pitfalls in Courtroom Cross-Examination", "Privacy vs. State Surveillance in Digital Forensics", "Expert Witness Testimony & Daubert/Frye Benchmarks"],
+        caseRole: "Delegates audit warrant timestamps and hash logs to determine which evidence survives suppression motions."
+      },
+      for: {
+        code: "PILLAR-03 // FIELD & LAB FORENSICS",
+        title: "Crime Scene Reconstruction, Ballistics & Trace Analysis",
+        desc: "Integrating physical trace evidence, bloodstain pattern dynamics, forensic ballistics, and 3D spatial photogrammetry to reconstruct multi-actor crime scenes.",
+        topics: ["3D LiDAR & Photogrammetric Scene Reconstruction", "Terminal Ballistics & Gunshot Residue (GSR) Profiling", "Micro-Trace Fiber, Glass & Soil Forensics", "Next-Gen DNA Phenotyping & Touch DNA"],
+        caseRole: "Delegates cross-reference trajectory angles and trace fiber transfers against suspect alibi statements."
+      },
+      ai: {
+        code: "PILLAR-04 // ARTIFICIAL INTELLIGENCE",
+        title: "AI Forensics, Deepfake Detection & Predictive Intelligence",
+        desc: "Combating generative synthetic media while harnessing machine learning for biometric matching, automated crime-pattern linking, and audio-visual authentication.",
+        topics: ["Detecting GAN & Diffusion Deepfakes in Video/Audio", "Explainable AI (XAI) in Forensic Decision Support", "Automated Stylometry & Threat Actor Profiling", "Adversarial Attacks Against Forensic Biometrics"],
+        caseRole: "Delegates inspect spectral audio artifacts to expose a cloned voice message used to fake an alibi."
+      },
+      cyb: {
+        code: "PILLAR-05 // CYBER & DFIR",
+        title: "Cyber Forensics, Incident Response & OSINT",
+        desc: "Deep-dive methodologies into volatile RAM acquisition, mobile device extraction, blockchain tracing, and open-source intelligence (OSINT) attribution.",
+        topics: ["Mobile iOS/Android & Encrypted App Forensics", "Cloud Infrastructure & Ransomware Incident Response", "Cryptocurrency Laundering & Ledger Forensics", "Geolocation & Metadata OSINT Investigations"],
+        caseRole: "Delegates trace spoofed IP headers and EXIF metadata to pinpoint the origin of a remote intrusion."
+      }
+    };
+
+    function initSite() {
+      document.getElementById('hero-date-badge').textContent = CONFERENCE_CONFIG.dateDisplay;
+      ['nav-reg-btn', 'mob-reg-btn', 'hero-reg-btn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = CONFERENCE_CONFIG.registerLink;
+      });
+      document.getElementById('cfp-submit-btn').href = CONFERENCE_CONFIG.submitPaperLink;
+      document.getElementById('footer-email').href = `mailto:${CONFERENCE_CONFIG.contactEmail}`;
+      document.getElementById('footer-ig').href = CONFERENCE_CONFIG.instagramUrl;
+      document.getElementById('footer-li').href = CONFERENCE_CONFIG.linkedinUrl;
+
+      selectPillar('med');
+      renderSpeakers(CONFERENCE_CONFIG.speakers);
+      renderSchedule(CONFERENCE_CONFIG.schedule);
+      startCountdown();
+      lucide.createIcons();
+    }
+
+    function selectPillar(key) {
+      const data = PILLARS_DATA[key];
+      document.querySelectorAll('.pillar-btn').forEach(btn => {
+        if (btn.dataset.pillar === key) {
+          btn.classList.add('border-cyanForensic', 'bg-cyanForensic/15', 'text-cyanForensic');
+          btn.classList.remove('border-white/10', 'bg-surface', 'text-slate-300');
+        } else {
+          btn.classList.remove('border-cyanForensic', 'bg-cyanForensic/15', 'text-cyanForensic');
+          btn.classList.add('border-white/10', 'bg-surface', 'text-slate-300');
+        }
+      });
+
+      const topicsHtml = data.topics.map(t => `
+        <div class="flex items-start gap-2.5 p-3 rounded-xl bg-obsidian/70 border border-white/5">
+          <i data-lucide="chevron-right" class="w-4 h-4 text-cyanForensic shrink-0 mt-0.5"></i>
+          <span class="text-sm text-slate-200">${t}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('pillar-content').innerHTML = `
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <span class="font-mono text-xs text-cyanForensic tracking-widest">${data.code}</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">${data.title}</h3>
+            <p class="text-slate-300 leading-relaxed">${data.desc}</p>
+            <div class="p-4 rounded-xl bg-crimsonAlert/10 border border-crimsonAlert/30 text-xs sm:text-sm text-slate-200">
+              <strong class="text-crimsonAlert font-mono uppercase">Case #001 Integration:</strong> ${data.caseRole}
+            </div>
+          </div>
+          <div class="lg:col-span-5 space-y-2.5">
+            <div class="font-mono text-xs text-slate-400 uppercase mb-2">Key Focus Tracks</div>
+            ${topicsHtml}
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function renderSpeakers(list) {
+      const grid = document.getElementById('speakers-grid');
+      grid.innerHTML = list.map((spk, idx) => `
+        <div onclick="openSpeakerModal(${idx})" class="glass-card rounded-2xl overflow-hidden cursor-pointer group flex flex-col justify-between transition transform hover:-translate-y-1">
+          <div>
+            <div class="relative h-60 overflow-hidden bg-obsidian">
+              <img src="${spk.image}" alt="${spk.name}" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 ${spk.status !== 'CONFIRMED' ? 'opacity-50 grayscale' : ''}" />
+              <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-obsidian/85 backdrop-blur font-mono text-[10px] text-cyanForensic border border-cyanForensic/30">
+                ${spk.domain}
+              </span>
+            </div>
+            <div class="p-5">
+              <div class="font-mono text-[10px] text-slate-400">${spk.id} • ${spk.status}</div>
+              <h3 class="font-display text-xl font-bold text-white mt-1 group-hover:text-cyanForensic transition">${spk.name}</h3>
+              <p class="text-xs text-cyanForensic font-medium mt-0.5">${spk.role}</p>
+              <p class="text-xs text-slate-400 mt-1">${spk.organization}</p>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-300 group-hover:text-cyanForensic">
+            <span>Inspect Dossier</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function renderSchedule(items) {
+      const container = document.getElementById('schedule-list');
+      container.innerHTML = items.map(item => `
+        <div class="glass-card rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div class="sm:w-40 shrink-0">
+              <span class="font-mono text-[11px] text-cyanForensic block">${item.day}</span>
+              <span class="font-display font-bold text-lg text-white">${item.time}</span>
+            </div>
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded bg-white/5 font-mono text-[10px] text-slate-300 border border-white/10">${item.track}</span>
+                <span class="font-mono text-[10px] text-crimsonAlert">${item.clueDrop}</span>
+              </div>
+              <h4 class="font-display text-lg font-bold text-white">${item.title}</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Lead: ${item.speaker}</p>
+            </div>
+          </div>
+          <div class="font-mono text-xs text-slate-500 shrink-0">${item.code}</div>
+        </div>
+      `).join('');
+    }
+
+    function openSpeakerModal(index) {
+      const spk = CONFERENCE_CONFIG.speakers[index];
+      document.getElementById('modal-img').src = spk.image;
+      document.getElementById('modal-domain').textContent = spk.domain;
+      document.getElementById('modal-name').textContent = spk.name;
+      document.getElementById('modal-role').textContent = `${spk.role} — ${spk.organization}`;
+      document.getElementById('modal-bio').textContent = spk.bio;
+      document.getElementById('modal-session').textContent = spk.sessionTitle;
+      const modal = document.getElementById('speaker-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSpeakerModal() {
+      const modal = document.getElementById('speaker-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function toggleSampleClue() {
+      const box = document.getElementById('sample-clue-box');
+      const btnText = document.getElementById('clue-btn-text');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+        btnText.textContent = "Hide Evidence Snippet";
+      } else {
+        box.classList.add('hidden');
+        btnText.textContent = "Decrypt Sample Evidence Snippet";
+      }
+    }
+
+    function startCountdown() {
+      const target = new Date(CONFERENCE_CONFIG.countdownTarget).getTime();
+      setInterval(() => {
+        const now = new Date().getTime();
+        const diff = Math.max(0, target - now);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+        document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+      }, 1000);
+    }
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('DOMContentLoaded', initSite);
+  </script>
+</body>
+</html>
